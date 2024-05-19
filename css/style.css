@@ -7,19 +7,168 @@ Dark green: #28b485
 
 */
 
-* {
+/* Alright, and since we're at it,
+we should actually update this universal reset here,
+because we can do slightly better than this,
+which is to also select all of the after pseudo-elements
+and also all of the before pseudo-elements.
+That's because, right now,
+only the real elements get this behavior here,
+but the after and before pseudo-elements,
+they don't get this behavior,
+and since we don't want to see
+any strange behavior happening,
+we will also include these ones here as well.
+So you know we already have a after pseudo-element down here */
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+
+  /* since we already talked about inheritance.
+So whenever we can use inheritance,
+we should use it instead of using here
+something like the universal selector,
+and so what I'm going to do now
+is to remove this box-sizing from here
+and put it here on the body.
+So now we set the body to box-sizing border-box,
+and then in here what we do
+is to say box-sizing and we use the inherit keyword,
+and that's it.
+So remember how we could use the inherit keyword
+to force inheritance.
+That's what we're doing here.
+So the box-sizing property by itself is not inherited,
+but by setting the box-sizing property
+on each and every element on the entire page to inherit,
+it'll automatically inherit
+whatever we put here on border-box.
+So this is considered a slightly better practice
+by the CSS community
+because it makes it a bit easier to change the box-sizing
+like in plugins or other components
+where we might want to use
+a different property for box-sizing.
+So it doesn't make a huge difference,
+just a slightly better practice
+to do the box-sizing border-box like this. */
+  box-sizing: inherit;
+}
+
+html {
+  /* 
+Because remember, 1 rem is exactly the root font size,
+so if 10 pixels is now the root font size,
+then 1 rem is 10 pixels,
+ */
+
+  /* font-size: 10px; */
+
+  /* So imagine we have a really huge screen or something,
+and we want to increase our design,
+or someone zooms in the page,
+and that's what happens.
+So we can also write media queries for larger screens
+and then increase the design.
+Alright, so that is the trick,
+and a huge, huge advantage of using rem. */
+
+  /* Now, we can still improve this,
+because it's actually a very bad practice
+to set the font size to pixels as well,
+so up here, this shouldn't really be 10 pixels.
+It should be something else.
+The problem is that by doing so we actually
+override the browser font size setting
+that the user can manually change in the settings,
+and many people actually do that.
+For example, when they have bad sight
+and cannot see so good,
+then some people actually
+increase the default font size of their browser.
+Now if we set the font to,
+like, the 10 pixels like we did here,
+then we remove the ability for these people
+to see our website properly,
+because they can no longer change the default font size.
+Well, they can, but our root font size
+will not be affected by that anymore.
+It will just be 10 pixels
+no matter what the user has as a default font size.
+So this is a really bad practice,
+
+and that is why we're going to set
+over a font size to a percentage here,
+which will translate to a percentage
+of the font size given by the browser.
+Now the default font size,
+if the user doesn't change anything,
+which is the initial situation that we want, is 16 pixels,
+so that's the absolute default,
+and that's a situation that we're counting on here.
+
+So if we put 100% here, this would mean
+that the root font size would be 16 pixel
+if the user doesn't change anything,
+
+and if the user does change the default font size,
+let's say to 18 pixels,
+then the root font size will be 18 pixel.
+
+If he changes to 20 pixel,
+then it will be 20, and so on and so forth.
+
+///////////////////////
+Now, but we don't want 16 pixels here, right?
+What we want is 10 pixels,
+and so it's very simple.
+All we have to do is to divide what we want,
+which is 10, by 16.
+So I'm having a calculator here,
+so 10 divided by 16 is 62.5%,
+and that is what we're putting here.
+62.5%, and that's it, that's the whole technique.
+So now, imagine, let's say .625,
+so if the default is 16 like we had before,
+then this translates to 10 pixels, right,
+which is what we want.
+
+But if the user changes to, let's say 20 pixels,
+then our default font size will be 12.5 pixels,
+so the root font size I was saying,
+and if the user does 22, it goes to 13.75 pixels,
+and so on and so forth,
+
+and so with this we allow the user
+to actually zoom in on the page automatically,
+not only to change the font size,
+but to also zoom in on the page,
+because basically that's what happens.
+Not exactly zooming, but increasing
+all of the measurements that we have on our page.
+So make sure that you understand this technique.
+It's really widely used in the CSS developer community
+because it's so simple and yet so powerful, as you saw. */
+
+  /* 10 divided by 16 is 62.5%, 
+  16px defult font-size
+  */
+  font-size: 62.5%;
 }
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.7;
   color: #777;
-  padding: 30px;
+
+  /* cannot be inherited */
+  padding: 3rem;
+
+  box-sizing: border-box;
 }
 
 .header {
@@ -39,12 +188,12 @@ body {
 
 .logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
 .logo {
-  height: 35px;
+  height: 3.5rem;
 }
 
 .text-box {
@@ -67,13 +216,14 @@ body {
   /* hide the shaky after animation */
   backface-visibility: hidden;
 
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
+
 .heading-primary-main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
@@ -84,9 +234,9 @@ body {
 
 .heading-primary-sub {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 17.4px;
+  letter-spacing: 1.75rem;
   animation: moveInRight 1s ease-out;
 }
 
@@ -94,12 +244,12 @@ body {
   /* start */
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
 
   /* middle */
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   /* end */
@@ -113,12 +263,12 @@ body {
   /* start */
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
 
   /* middle */
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   /* end */
@@ -132,7 +282,7 @@ body {
   /* start */
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(3rem);
   }
 
   /* end */
@@ -147,25 +297,26 @@ body {
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
 
   /* treated as text */
   display: inline-block;
 
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all 0.2s;
 
   position: relative;
+  font-size: 1.6rem;
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
