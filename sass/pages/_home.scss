@@ -22,8 +22,13 @@
   // So universal selector simply selects everything.
   // But only everything that is a direct child
   // of the section-features.
-
   & > * {
     transform: skewY(7deg);
   }
+}
+
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 50rem 0;
+  margin-top: -10rem;
 }
