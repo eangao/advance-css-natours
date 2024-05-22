@@ -1,1 +1,29 @@
-    
+// How does a clearfix actually work?
+// What the clearfix does is to append a pseudo element
+// after the element which will then clear these floats.
+// What we can do is to use the ampersand operator
+// and then after,
+
+// How does a clearfix work?
+// Again, we always need to specify the content property,
+// otherwise a pseudo element will simply not appear
+// on the page, and we want it empty
+// because we don't want to see this element on the page.
+// Then we also need to display it.
+// The way it's done is to use the table value in here.
+// That's simply the standard version of the clearfix,
+// so display, table,
+// and then finally the property that actually performs
+// this clearfix is the clear property.
+// This would clear both floats,
+// so float left and float right
+// so that it's gonna work
+// no matter if we use float left or float right.
+// That's actually it.
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
