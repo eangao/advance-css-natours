@@ -40,6 +40,15 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   /* pseudo-element 
  the after pseudo-element
 is basically treated like a child of the button.*/
