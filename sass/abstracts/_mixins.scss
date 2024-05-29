@@ -34,3 +34,85 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+//  MEDIA QUERY
+
+// However, we want them to be affected, so just like before,
+// we use pixels simply to understand what's going on here,
+// but we then use a relative unit
+// that is in the end going to convert to pixel.
+// About rems and ems, there's an important particularity
+// about them in media queries.
+// That's because ems and rems in media queries,
+// they are not affected by a root font size setting,
+// by this setting here.
+// They are simply not affected by what we do here
+// in the root font size setting.
+// What that means is that one rem or one em
+// in a media query is always just equal to the font size
+// which is coming from the browser,
+// and that's by default 16 pixels,
+// but if the user changes it to 20 pixels,
+// then it will be 20 pixels no matter what we have
+// in our base font definition.
+// What we're going to use here is ems and not rems,
+// because rems fail to work as intended
+// in some of the browsers.
+
+// in our base font definition.
+// What we're going to use here is ems and not rems,
+// because rems fail to work as intended
+// in some of the browsers.
+// There's been some experiments done by people who understand
+// a lot of all of this, and the conclusion basically
+// is that ems are the best option for media queries.
+
+/*
+
+MEDIA QUERY MANAGER
+------------------
+0-600pzx;        phone
+600px-900px;     tablet portrait
+600px-900px;     tablet landscape
+[1200 - 1800]    is where our normal styles apply
+1800px +         Big desktop
+
+
+$breakpoint argument choices:
+------------------
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    //600px
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    //900px
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    // 1200px
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    // 1800px
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

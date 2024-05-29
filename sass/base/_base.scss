@@ -7,8 +7,40 @@
 }
 
 html {
+  // default font size 16px
   // This defines what 1 rem is
-  font-size: 62.5%;
+  font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
+
+  // @include respond(phone) {
+  //   font-size: 50%;
+  // }
+
+  //   so they would still be conflicting,
+  // but the difference is that the smaller media query,
+  // the one for the tablet portrait is the one that is applying.
+  // That is exactly what I want
+  // when the screen is just 900 pixels.
+  // I don't want the larger media query to apply,
+  // but the smaller one, and so this is the order
+  // in which we have to put the media queries.
+  // Always the larger ones before the smaller ones.
+  // This will bring me the behavior that I expected.
+  @include respond(tab-land) {
+    // width < 1200 ?
+    //1rem = 9px; 9px/16px = 56.25%
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) {
+    // width < 900 ?
+    //1rem = 8px; 8px/16px = 50%
+    font-size: 50%;
+  }
+
+  @include respond(big-desktop) {
+    //1rem = 12px; 12px/16px = 75%
+    font-size: 75%;
+  }
 }
 
 body {
