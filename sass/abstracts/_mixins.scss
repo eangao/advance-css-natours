@@ -37,6 +37,13 @@
 
 //  MEDIA QUERY
 
+// We've been talking about pixels here all this time now,
+// but such as in the rest of the page, we're actually not
+// gonna use pixels in the media queries here.
+// That's because if the user changes the default font size
+// in the browser, then the media queries
+// would not be affected by that.
+
 // However, we want them to be affected, so just like before,
 // we use pixels simply to understand what's going on here,
 // but we then use a relative unit
@@ -84,6 +91,8 @@ $breakpoint argument choices:
 - tab-port
 - tab-land
 - big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
 
 1em = 16px
 */
