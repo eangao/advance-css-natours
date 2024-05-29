@@ -2,10 +2,10 @@
 
 MEDIA QUERY MANAGER
 ------------------
-0-600pzx;        phone
-600px-900px;     tablet portrait
-600px-900px;     tablet landscape
-[1200 - 1800]    is where our normal styles apply
+0-600px;        phone
+601px-900px;     tablet portrait
+901px-1200px;     tablet landscape
+[1201 - 1799]    is where our normal styles apply
 1800px +         Big desktop
 
 
@@ -563,14 +563,29 @@ the styles up to zero percent before the animation starts. */
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
     transition: all 0.5s 0.2s; }
+    @media (max-width: 37.5em) {
+      .popup__content {
+        display: inline-block; } }
   .popup__left {
     width: 33.333333%;
-    display: table-cell; }
+    display: table-cell;
+    vertical-align: middle; }
+    @media (max-width: 56.25em) {
+      .popup__left {
+        width: 40%; } }
+    @media (max-width: 37.5em) {
+      .popup__left {
+        display: flex;
+        align-items: center;
+        width: 50%; } }
   .popup__right {
     width: 66.6666667%;
     display: table-cell;
     vertical-align: middle;
     padding: 3rem 5rem; }
+    @media (max-width: 56.25em) {
+      .popup__right {
+        width: 60%; } }
   .popup__img {
     display: block;
     width: 100%; }
@@ -587,6 +602,14 @@ the styles up to zero percent before the animation starts. */
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto; }
+    @media (max-width: 56.25em) {
+      .popup__text {
+        -moz-column-count: 1;
+        column-count: 1;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        -webkit-hyphens: none;
+        hyphens: none; } }
   .popup:target {
     opacity: 1;
     visibility: visible; }
