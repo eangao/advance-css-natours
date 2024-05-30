@@ -428,8 +428,30 @@
 
     <footer class="footer">
       <div class="footer__logo-box">
-        <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo" />
-      </div>
+
+        <!-- Art direction -->
+        <picture class="footer__logo">
+           <!-- use this image for lower resolution - 600px -->
+          <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"  media="(max-width: 37.5em)"/>
+
+            <!-- density switching in HTML -->
+          <img
+          srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+          alt="Full logo"
+        />
+        </picture>
+
+        <!-- So this is density switching in HTML
+          
+          with this source set attribute,
+        we give the browser the choice to choose
+        the best image for each situation. 
+        ==========
+      <img
+          srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+          alt="Full logo" class="footer__logo"
+        />
+      </div> -->
 
       <div class="row">
         <div class="col-1-of-2">
