@@ -1,5 +1,5 @@
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(
       to right bottom,
       rgba($color-primary-light, 0.8),
@@ -10,15 +10,34 @@
   background-position: top;
   position: relative;
 
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  //clip-path not supported in some browser
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
 
   //in higher resolution minwith: 600px 37.5em (,)or in  lower resolution minwidth: 2000px 125em
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+
+  //   in safari
+  //   (-webkit-min-device-pixel-ratio: 2)
+  //   So basically what this means is that the pixel ratio
+  // of the device should be at least two.
+  // And what this two means is basically the two X
+  // that I've been explaining to you.
+  // So if the screen is at least two X
+  // because there's also three X or maybe even more,
+  // but anyway if it's at least two X which is really
+  // the same as having this resolution here at least
+  // (min-resolution: 192dpi).
+  // Well then this code here should apply.
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    (min-width: 125em) {
     background-image: linear-gradient(
         to right bottom,
-        rgba($color-secondary-light, 0.8),
-        rgba($color-secondary-dark, 0.8)
+        rgba($color-parimary-light, 0.8),
+        rgba($color-parimary-dark, 0.8)
       ),
       url(../img/hero.jpg);
   }
